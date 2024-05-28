@@ -1,6 +1,5 @@
-﻿using HomeBanking.Models;
-
-namespace HomeBankingMindHub.Models
+﻿
+namespace HomeBanking.Models
 {
     public class DBInitializer
     {
@@ -22,7 +21,6 @@ namespace HomeBankingMindHub.Models
 
                 //guardamos
                 context.SaveChanges();
-
 
             }
             if (!context.Account.Any())

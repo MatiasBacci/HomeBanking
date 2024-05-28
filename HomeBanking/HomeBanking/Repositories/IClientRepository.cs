@@ -1,7 +1,6 @@
 ﻿using HomeBanking.Models;
 
-
-namespace HomeBankingMindHub.Repositories
+namespace HomeBanking.Repositories
 {
     public interface IClientRepository
     {
