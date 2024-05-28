@@ -22,8 +22,27 @@ namespace HomeBankingMindHub.Models
 
                 //guardamos
                 context.SaveChanges();
-            }
 
+
+            }
+            if (!context.Account.Any())
+            {
+                var client = context.Clients.FirstOrDefault(c => c.Email == "vcoronado@gmail.com");
+
+                if (client != null)
+                {
+                    var accounts = new Account[]
+                    {
+                        new Account {ClientId = client.Id, CreationDate = DateTime.Now, Number = "VIN001", Balance = 0 }
+                    };
+
+
+                    context.Account.AddRange(accounts);
+                    
+                    context.SaveChanges();
+
+                }
+            }
         }
     }
 }
