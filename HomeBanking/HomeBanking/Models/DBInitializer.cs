@@ -23,6 +23,7 @@ namespace HomeBanking.Models
                 context.SaveChanges();
 
             }
+
             if (!context.Account.Any())
             {
                 var client = context.Clients.FirstOrDefault(c => c.Email == "vcoronado@gmail.com");
@@ -31,12 +32,30 @@ namespace HomeBanking.Models
                 {
                     var accounts = new Account[]
                     {
-                        new Account {ClientId = client.Id, CreationDate = DateTime.Now, Number = "VIN001", Balance = 0 }
+                        new Account {ClientId = client.Id, CreationDate = DateTime.Now, Number = "VIN001", Balance = 100000 }
                     };
 
-
                     context.Account.AddRange(accounts);
-                    
+                    context.SaveChanges();
+
+                }
+            }
+
+            if (!context.Transactions.Any())
+            {
+                var account1 = context.Account.FirstOrDefault(c => c.Number == "VIN001");
+
+                if (account1 != null)
+                {
+                    var transactions = new Transaction[]
+                    {
+                        new Transaction { AccountId= account1.Id, Amount = 20000, Date= DateTime.Now.AddHours(-5), Description = "Dinero acreditado en cuenta", Type = TransactionType.CREDIT },
+                        new Transaction { AccountId= account1.Id, Amount = -2500, Date= DateTime.Now.AddHours(-6), Description = "Compra en verduleria", Type = TransactionType.DEBIT },
+                        new Transaction { AccountId= account1.Id, Amount = -3500, Date= DateTime.Now.AddHours(-7), Description = "Compra en carniceria", Type = TransactionType.DEBIT },
+                    };
+
+                    context.Transactions.AddRange(transactions);
+                 
                     context.SaveChanges();
 
                 }
