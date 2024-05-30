@@ -3,11 +3,6 @@ using HomeBanking.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeBanking.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountsController : ControllerBase;
-    namespace HomeBanking.Controllers
 
     {
         [Route("api/[controller]")]
@@ -57,4 +52,4 @@ namespace HomeBanking.Controllers
             }
         }
     }
-}
+
