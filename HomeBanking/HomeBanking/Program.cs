@@ -22,7 +22,7 @@ builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 
-
+builder.Services.AddScoped<ICardRepository, CardRepository>();
 //
 var app = builder.Build();
 

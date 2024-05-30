@@ -6,8 +6,8 @@ namespace HomeBanking.DTOs
     {
         public long Id { get; set; }
         public string CardHolder { get; set; }
-        public CardType Type { get; set; }
-        public CardColor Color { get; set; }
+        public string Type { get; set; }
+        public string Color { get; set; }
         public string Number { get; set; }
         public int Cvv { get; set; }
         public DateTime FromDate { get; set; }
@@ -17,8 +17,8 @@ namespace HomeBanking.DTOs
         {
             Id = card.Id;
             CardHolder = card.CardHolder;
-            Type = card.Type;
-            Color = card.Color;
+            Type = card.Type.ToString();
+            Color = card.Color.ToString();
             Number = card.Number;
             Cvv = card.Cvv;
             FromDate = card.FromDate;

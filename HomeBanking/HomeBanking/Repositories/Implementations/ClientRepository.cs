@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
-namespace HomeBanking.Repositories
+namespace HomeBanking.Repositories.Implementations
 {
     public class ClientRepository : RepositoryBase<Client>, IClientRepository
     {
@@ -13,6 +13,7 @@ namespace HomeBanking.Repositories
         public Client FindById(long id)
         {
             return FindByCondition(client => client.Id == id)
+                .Include(client => client.Cards)
                 .Include(client => client.Accounts)
                 .Include(client => client.ClientLoans)
                     .ThenInclude(cl => cl.Loan)
@@ -22,6 +23,7 @@ namespace HomeBanking.Repositories
         public IEnumerable<Client> GetAllClients()
         {
             return FindAll()
+                .Include(client => client.Cards)
                 .Include(client => client.Accounts)
                 .Include(client => client.ClientLoans)
                     .ThenInclude(cl => cl.Loan)

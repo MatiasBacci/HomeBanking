@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeBanking.Migrations
 {
     [DbContext(typeof(HomeBankingContext))]
-    [Migration("20240530170837_addCardEntity")]
-    partial class addCardEntity
+    [Migration("20240530185408_addEntityCard")]
+    partial class addEntityCard
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -210,11 +210,13 @@ namespace HomeBanking.Migrations
 
             modelBuilder.Entity("HomeBanking.Models.Card", b =>
                 {
-                    b.HasOne("HomeBanking.Models.Client", null)
+                    b.HasOne("HomeBanking.Models.Client", "Client")
                         .WithMany("Cards")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("HomeBanking.Models.ClientLoan", b =>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HomeBanking.Migrations
 {
     /// <inheritdoc />
-    public partial class addCardEntity : Migration
+    public partial class addEntityCard : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
