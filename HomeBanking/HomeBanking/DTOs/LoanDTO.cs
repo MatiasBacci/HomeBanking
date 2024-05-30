@@ -15,7 +15,6 @@ namespace HomeBanking.DTOs
             Name = loan.Name;
             MaxAmount = loan.MaxAmount;
             Payments = loan.Payments;
-        
             }
     }
 }
