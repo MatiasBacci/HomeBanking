@@ -9,6 +9,6 @@
         public Client Client { get; set; }  
         public long LoanId { get; set; }
         public Loan Loan { get; set; }
- 
+
     }
 }

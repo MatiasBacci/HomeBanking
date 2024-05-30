@@ -13,13 +13,17 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<HomeBankingContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("HomeBankingConexion")));
 
-//Add repositories
+//Add repositories to the container.
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
+builder.Services.AddScoped<ILoanRepository, LoanRepository>();
+
+
+//
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
