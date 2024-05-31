@@ -1,6 +1,7 @@
 using HomeBanking.Models;
 using HomeBanking.Repositories;
 using HomeBanking.Repositories.Implementations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,22 @@ builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 
 builder.Services.AddScoped<ICardRepository, CardRepository>();
+
+//Add authentiation for login page by Cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+      .AddCookie(options =>
+      {
+          options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+          options.LoginPath = new PathString("/index.html");
+      });
+
+//Add authorization 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ClientOnly", policy => policy.RequireClaim("Client"));
+});
 //
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -54,6 +70,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapControllers();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
